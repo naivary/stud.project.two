@@ -7,6 +7,7 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
+    app.kubernetes.io/name: kubernetes-dashboard
     k8s-app: kubernetes-dashboard
   ports:
     - name: https
