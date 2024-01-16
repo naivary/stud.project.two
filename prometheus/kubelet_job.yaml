@@ -9,16 +9,16 @@ spec:
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
     honorLabels: true
     interval: 30s
-    port: http-metrics
-    scheme: http
+    port: https-metrics
+    scheme: https
     tlsConfig:
       insecureSkipVerify: true
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
     honorLabels: true
     interval: 30s
-    path: /metrics/cadvisor
-    port: http-metrics
-    scheme: http
+    path: /metrics
+    port: https-metrics
+    scheme: https
     tlsConfig:
       insecureSkipVerify: true
   jobLabel: kubelet
