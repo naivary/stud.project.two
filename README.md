@@ -10,20 +10,30 @@ sudo apt-get upgrade -y
 ```
 
 ```bash
-sudo apt install bind9 bind9utils bind9-doc -y
-```
-
-```bash
 alias k=kubectl
 ```
 
-### Erstellen der bind9 entries
-### erstellen von ssh schl"ussel
-### addend des ssh-keys zu agent
+### Generieren eines Schluesselpaars
+ssh-keygen -t rsa -b 2048
+
+### Klonen des Projektes
+```bash
+git clone https://github.com/naivary/stud.project.two.git
+```
+
+```bash
+cd stud.project.two
+```
+
 ### Provisionierun des Clusters
 ```bash
 vagrant up
 ```
+
+```bash
+acivate the virtual env of python install the requirements and run the playbook
+```
+
 
 ```bash
 cd kubespray && ansible-playbook -i inventory/k8s-cluster/hosts.yaml -u vagrant -b
