@@ -14,7 +14,9 @@ alias k=kubectl
 ```
 
 ### Generieren eines Schluesselpaars
+```bash
 ssh-keygen -t rsa -b 2048
+```
 
 ### Klonen des Projektes
 ```bash
