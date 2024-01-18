@@ -56,7 +56,7 @@ curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releas
 ```bash
 kubectl create -f https://operatorhub.io/install/grafana-operator.yaml
 ```
-### Grafan + Prometheus Loesung 
+### Grafana + Prometheus Loesung 
 
 ```bash
 k apply -f observe.yaml
