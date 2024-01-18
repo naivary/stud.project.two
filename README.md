@@ -13,8 +13,9 @@ sudo apt-get upgrade -y
 sudo apt install bind9 bind9utils bind9-doc -y
 ```
 
-
-
+```bash
+alias k=kubectl
+```
 
 ### Erstellen der bind9 entries
 ### erstellen von ssh schl"ussel
@@ -51,7 +52,5 @@ kubectl create -f https://operatorhub.io/install/grafana-operator.yaml
 ```
 
 ```bash
-k apply -f grafana.yaml
-k apply -f prometheus_datasource.yaml
-k apply -f ingress_rule.yaml
+k apply -f grafana.yaml && k apply -f prometheus_datasource.yaml && k apply -f ingress_rule.yaml
 ```

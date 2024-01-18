@@ -1,0 +1,24 @@
+;
+; BIND data file for local loopback interface
+;
+; name servers - NS records
+$TTL	604800
+@	IN	SOA	dev-init.mh.org. admin.mh.org. (
+			      4		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@	IN	NS	dev-init.mh.org.
+dev-init IN A 192.168.56.1
+
+;
+dev-init.mh.org. IN A 192.168.56.1
+k8s-m1.mh.org. IN A 192.168.56.61
+k8s-m2.mh.org. IN A 192.168.56.62
+k8s-m3.mh.org. IN A 192.168.56.63
+k8s-n1.mh.org. IN A 192.168.56.51
+k8s-n2.mh.org. IN A 192.168.56.52
+
+*.mh.org. IN A 192.168.56.200
