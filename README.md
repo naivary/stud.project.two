@@ -31,7 +31,7 @@ git clone https://github.com/naivary/stud.project.two.git
 cd stud.project.two
 ```
 
-### Provisionierun des Clusters
+### Provisionierung des Clusters
 ```bash
 vagrant up
 ```
