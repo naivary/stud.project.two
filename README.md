@@ -10,8 +10,17 @@ sudo apt-get upgrade -y
 ```
 
 ```bash
-sudo add-apt-repository ppa:deadsnakes/ppa -y && sudo apt update && sudo apt install python3.11 && sudo apt install python3.11-venv -y
+sudo apt install haproxy jq -y
 ```
+
+```bash
+sudo add-apt-repository ppa:deadsnakes/ppa -y && sudo apt update -y
+```
+
+```bash
+sudo apt install python3.11 -y && sudo apt install python3.11-venv -y
+```
+
 
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -40,10 +49,6 @@ git clone https://github.com/naivary/stud.project.two.git
 cd stud.project.two
 ```
 
-```bash
-sudo apt install haproxy && sudo cp haproxy.cfg /etc/haproxy/haproxy.cfg && sudo systemctl restart haproxy
-```
-
 
 ### Provisionierung des Clusters
 ```bash
@@ -51,7 +56,7 @@ vagrant up
 ```
 
 ```bash
-python3 -m venv .va
+python3.11 -m venv .va
 ```
 
 ```bash
@@ -63,7 +68,7 @@ cd kubespray && pip install -r requirements.txt
 ```
 
 ```bash
-ansible-playbook -i inventory/k8s-cluster/hosts.yaml -u vagrant -b
+ansible-playbook -i inventory/k8s-cluster/hosts.yaml -u vagrant -b cluster.yml
 ```
 
 ### Copy the kubeconfig
@@ -80,7 +85,7 @@ sudo cp /etc/kubernetes/admin.conf admin.conf
 ```
 
 ```bash
-sudo chown vagrant:vagrant amdin.conf
+sudo chown vagrant:vagrant admin.conf
 ```
 
 ```bash
@@ -89,6 +94,10 @@ exit
 
 ```bash
 scp vagrant@192.168.56.61:/home/vagrant/admin.conf ~/.kube/config
+```
+
+```bash
+sudo cp haproxy.cfg /etc/haproxy/haproxy.cfg && sudo systemctl restart haproxy
 ```
 
 ### Operator Installieren
@@ -109,5 +118,11 @@ kubectl create -f https://operatorhub.io/install/grafana-operator.yaml
 ### Grafana + Prometheus Loesung 
 
 ```bash
-k apply -f observe.yaml
+cd .. && k apply -f observe.yaml
 ```
+
+Das Grafana dashboard sollt ein kuerze unter der Adresse https://192.168.56.200 erreichbar sein. 
+
+Die Anmeldedaten sind:
+Username: root
+Password: secret
