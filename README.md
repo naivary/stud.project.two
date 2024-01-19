@@ -10,6 +10,10 @@ sudo apt-get upgrade -y
 ```
 
 ```bash
+sudo apt install python3-venv -y
+```
+
+```bash
 alias k=kubectl
 ```
 
@@ -33,12 +37,19 @@ vagrant up
 ```
 
 ```bash
-acivate the virtual env of python install the requirements and run the playbook
+python -m venv .va
 ```
 
+```bash
+. .va/bin/activate
+```
 
 ```bash
-cd kubespray && ansible-playbook -i inventory/k8s-cluster/hosts.yaml -u vagrant -b
+cd kubespray && pip install -r requirements.txt
+```
+
+```bash
+ansible-playbook -i inventory/k8s-cluster/hosts.yaml -u vagrant -b
 ```
 
 ### Operator Installieren
@@ -48,7 +59,7 @@ LATEST=$(curl -s https://api.github.com/repos/prometheus-operator/prometheus-ope
 curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/download/${LATEST}/bundle.yaml | kubectl create -f -
 ```
 Installierung des Grafana-Operators
-### grafana
+### Grafana
 ```bash
 curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.26.0/install.sh | bash -s v0.26.0
 ```
