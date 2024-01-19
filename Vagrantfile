@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
     infra.vm.network "private_network", type: "", ip: "192.168.56.81"
     infra.vm.network "public_network", bridge: "enp0s25"
     infra.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    infra.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
     infra.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update -y && sudo apt-get upgrade -y
     SHELL
