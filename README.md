@@ -25,6 +25,7 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 alias k=kubectl
 ```
 
+
 ### Generieren eines Schluesselpaars
 ```bash
 ssh-keygen -t rsa -b 2048
@@ -38,6 +39,11 @@ git clone https://github.com/naivary/stud.project.two.git
 ```bash
 cd stud.project.two
 ```
+
+```bash
+sudo apt install haproxy && sudo cp haproxy.cfg /etc/haproxy/haproxy.cfg && sudo systemctl restart haproxy
+```
+
 
 ### Provisionierung des Clusters
 ```bash
