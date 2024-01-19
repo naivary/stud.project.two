@@ -37,7 +37,7 @@ vagrant up
 ```
 
 ```bash
-python -m venv .va
+python3 -m venv .va
 ```
 
 ```bash

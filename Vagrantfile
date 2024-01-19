@@ -1,4 +1,22 @@
 Vagrant.configure("2") do |config|
+  config.vm.define "infra" do |infra|
+    infra.vm.hostname = "k8s-infra-system"
+    infra.vm.box = "ubuntu/focal64"
+    infra.vm.boot_timeout = 300
+    infra.vm.provider "virtualbox" do |v|
+      v.name = "k8s-infra-system"
+      v.memory = 4000
+      v.cpus = 1
+    end
+    infra.vm.synced_folder ".", "/vagrant", disabled: true
+    infra.vm.network "private_network", type: "", ip: "192.168.56.81"
+    infra.vm.network "public_network", bridge: "enp0s25"
+    infra.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    infra.vm.provision "shell", inline: <<-SHELL
+      sudo apt-get update -y && sudo apt-get upgrade -y
+    SHELL
+  end
+
   config.vm.define "m1" do |m1|
     m1.vm.hostname = "k8s-m1"
     m1.vm.box = "ubuntu/focal64"
