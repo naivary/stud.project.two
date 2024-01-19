@@ -11,8 +11,7 @@ Vagrant.configure("2") do |config|
     infra.vm.synced_folder ".", "/vagrant", disabled: true
     infra.vm.network "private_network", type: "", ip: "192.168.56.81"
     infra.vm.network "public_network", bridge: "enp0s25"
-    infra.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
-    infra.vm.provision "file", source: "~/.ssh/id_rsa", destination: "~/.ssh/id_rsa"
+    infra.vm.provision "file", source: "id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
     infra.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update -y && sudo apt-get upgrade -y
     SHELL
@@ -31,7 +30,7 @@ Vagrant.configure("2") do |config|
     m1.vm.network "private_network", type: "", ip: "192.168.56.61"
     m1.vm.network "public_network", bridge: "enp0s25"
     m1.vm.disk :disk, size:"30GB", primary: true
-    m1.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    m1.vm.provision "file", source: "id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
     m1.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update -y && sudo apt-get upgrade -y
       cat /home/vagrant/.ssh/id_rsa.pub >> /home/vagrant/.ssh/authorized_keys
@@ -51,7 +50,7 @@ Vagrant.configure("2") do |config|
     m2.vm.network "private_network", type: "", ip: "192.168.56.62"
     m2.vm.network "public_network", bridge: "enp0s25"
     m2.vm.disk :disk, size:"30GB", primary: true
-    m2.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    m2.vm.provision "file", source: "id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
     m2.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update -y && sudo apt-get upgrade -y
       cat /home/vagrant/.ssh/id_rsa.pub >> /home/vagrant/.ssh/authorized_keys
@@ -71,7 +70,7 @@ Vagrant.configure("2") do |config|
     m3.vm.network "private_network", type: "", ip: "192.168.56.63"
     m3.vm.network "public_network", bridge: "enp0s25"
     m3.vm.disk :disk, size:"30GB", primary: true
-    m3.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    m3.vm.provision "file", source: "id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
     m3.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update -y && sudo apt-get upgrade -y
       cat /home/vagrant/.ssh/id_rsa.pub >> /home/vagrant/.ssh/authorized_keys
@@ -91,7 +90,7 @@ Vagrant.configure("2") do |config|
     n1.vm.network "private_network", type: "", ip: "192.168.56.51"
     n1.vm.network "public_network", bridge: "enp0s25"
     n1.vm.disk :disk, size:"30GB", primary: true
-    n1.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    n1.vm.provision "file", source: "id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
     n1.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update -y && sudo apt-get upgrade -y
       cat /home/vagrant/.ssh/id_rsa.pub >> /home/vagrant/.ssh/authorized_keys
@@ -111,7 +110,7 @@ Vagrant.configure("2") do |config|
     n2.vm.network "private_network", type: "", ip: "192.168.56.52"
     n2.vm.network "public_network", bridge: "enp0s25"
     n2.vm.disk :disk, size:"30GB", primary: true
-    n2.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    n2.vm.provision "file", source: "id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
     n2.vm.provision "shell", inline: <<-SHELL
       sudo apt-get update -y && sudo apt-get upgrade -y
       cat /home/vagrant/.ssh/id_rsa.pub >> /home/vagrant/.ssh/authorized_keys
