@@ -14,6 +14,14 @@ sudo add-apt-repository ppa:deadsnakes/ppa -y && sudo apt update && sudo apt ins
 ```
 
 ```bash
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+```
+
+```bash
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```
+
+```bash
 alias k=kubectl
 ```
 
@@ -50,6 +58,31 @@ cd kubespray && pip install -r requirements.txt
 
 ```bash
 ansible-playbook -i inventory/k8s-cluster/hosts.yaml -u vagrant -b
+```
+
+### Copy the kubeconfig
+```bash
+mkdir ~/.kube
+```
+
+```bash
+ssh vagrant@192.168.56.61
+```
+
+```bash
+sudo cp /etc/kubernetes/admin.conf admin.conf
+```
+
+```bash
+sudo chown vagrant:vagrant amdin.conf
+```
+
+```bash
+exit
+```
+
+```bash
+scp vagrant@192.168.56.61:/home/vagrant/admin.conf ~/.kube/config
 ```
 
 ### Operator Installieren
