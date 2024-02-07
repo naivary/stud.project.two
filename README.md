@@ -55,7 +55,8 @@ git clone https://github.com/naivary/stud.project.two.git && cd stud.project.two
 ```
 
 ### Provisionierung der Infrastruktur mithilfe von Vagrant
-Im Folgendem werden insgesamt 5 virtuelle Maschinen provisioniert (3 Control Planes und 2 Nodes). Ebenfalls wird eine Python Virtual Environment erstellt, für die Installation der Kubespray [Abhängigkeit](./kubespray/requirements.txt)
+Im Folgendem werden insgesamt 5 virtuelle Maschinen provisioniert (3 Control Planes und 2 Nodes). Ebenfalls wird eine Python Virtual Environment erstellt, für die Installation der Kubespray [Abhängigkeiten](./kubespray/requirements.txt)
+
 ```bash
 vagrant up
 ```
@@ -76,7 +77,9 @@ cd kubespray && pip install -r requirements.txt
 ansible-playbook -i inventory/k8s-cluster/hosts.yaml -u vagrant -b cluster.yml
 ```
 
-### Copy the kubeconfig
+### Kopieren der Kubernets-Konfiguration
+Damit die Interaktion zwischen dem Ubuntu-Infrakstruktursystem und dem Kubernetes-Produktionscluster gelingt, muss die Kubernetes-Konfiguration `kubectl` bekannt sein. Diese ist bereits auf einem der drei Control Planes vordefiniert und muss ausschließlich auf das Infrastruktursystem kopiert werden. Der `.kube`-Ordner im Homeverzeichnis des aktuellen Ubuntu-Nutzers ist der Standardordner von `kubectl`. Dort erwartet `kubectl` die Kubernetes-Konfiguration.
+
 ```bash
 mkdir ~/.kube
 ```
@@ -105,14 +108,14 @@ scp vagrant@192.168.56.61:/home/vagrant/admin.conf ~/.kube/config
 sudo cp haproxy.cfg /etc/haproxy/haproxy.cfg && sudo systemctl restart haproxy
 ```
 
-### Operator Installieren
-Installireung des Prometheus-Operators
+### Implementierung der beispielhaften Observability-Lösung
+Für die Implementierung der beispielhaften Observability-Lösung werden die beiden Kubernetes-Operator Prometheus-Operator und Grafana-Operator benötigt.
+
 ```bash
 LATEST=$(curl -s https://api.github.com/repos/prometheus-operator/prometheus-operator/releases/latest | jq -cr .tag_name)
 curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/download/${LATEST}/bundle.yaml | kubectl create -f -
 ```
-Installierung des Grafana-Operators
-### Grafana
+
 ```bash
 curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.26.0/install.sh | bash -s v0.26.0
 ```
@@ -120,14 +123,15 @@ curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releas
 ```bash
 kubectl create -f https://operatorhub.io/install/grafana-operator.yaml
 ```
-### Grafana + Prometheus Loesung 
+### Deployment der beispielhaften Lösung
+Im `observe.yaml` Datei werden die Kubernetes-Objekte definiert, welche für die beispielhafte Lösung benötigt werden. Sollte ein Fehler auftreten, sollte das zweite Kommand ausgeführt bis zum Erfolg.
+Die Fehler entstehen, aufgrund der Abhängigkeiten der Kubernetes-Objekte, die ggf. noch nicht vollständig erstellt sind.
 
 ```bash
 cd .. && k apply -f observe.yaml
 ```
 
-Das Grafana dashboard sollt ein kuerze unter der Adresse https://192.168.56.200 erreichbar sein. 
-
-Die Anmeldedaten sind:
-Username: root
-Password: secret
+### Zugriff auf das Grafana-Dashboard
+Das Grafana-Dashboard kann nach dem erfolgreichen Deployment unter der Adresse https://192.168.56.200 erreicht werden. Die Anmeldaten lauten wie folgt:
+- Username: root
+- Password: secret
