@@ -5,7 +5,7 @@ Für die erfolgreiche Provisionierung des Kubernetes-Produktionsclusters müssen
 - [Vagrant](https://developer.hashicorp.com/vagrant/downloads#Linux) installiert auf dem Ubuntu System
 
 ## Installation und Aktualisierung
-Zuerst müssen die Pakete von Ubuntu aktualisiert und benötigte Softwarepakete installiert werden. Zu den benötigten Softwarepaketen gehören:
+Zuerst müssen die Softwarepakete von Ubuntu aktualisiert und benötigte installiert werden. Zu den benötigten Softwarepaketen gehören:
 - jq
 - haproxy
 - python3.11
