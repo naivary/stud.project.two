@@ -1,7 +1,10 @@
 ## Vorrausetzung
-Die im Folgenden beschriebenen Kommandos müssen alle auf einem Ubuntu (mindestens Version 20.04) ausgeführt werden für eine erfolgreiche Provisionierung des Kubernetes-Produktionsclusters.
+Für die erfolgreiche Provisionierung des Kubernetes-Produktionsclusters müssen folgende Vorrausetzungen erfüllt sein:
+- Ubuntu Betriebssystem (mindestens Version 20.04)
+- [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads) installiert auf dem Ubuntu System
+- [Vagrant](https://developer.hashicorp.com/vagrant/downloads#Linux) installiert auf dem Ubuntu System
 
-## Vorgehen für das Deployment des k8s Clusters.
+## Installation von Software-Pakete und Aktualisierung von Ubuntu
 Zuerst müssen die Packages von Ubuntu aktualisiert werden und benötigte Software-Pakete installiert werden. Zu den benötigten Software-Paketen gehöhren:
 - jq
 - haproxy
@@ -29,7 +32,6 @@ sudo add-apt-repository ppa:deadsnakes/ppa -y && sudo apt update -y
 sudo apt install python3.11 -y && sudo apt install python3.11-venv -y
 ```
 
-
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 ```
@@ -42,17 +44,18 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 alias k=kubectl
 ```
 
-### Klonen des Projektes
-```bash
-git clone https://github.com/naivary/stud.project.two.git
-```
+### Klonen des Git-Repositories
+Im Git-Repositorie sind bereits einige Vorkehrungen getroffen wurden, für einfache Provisionierung des Kubernetes-Produktionsclusters und die Interaktion mit diesem. Zu den Vorkehrung gehören beispielsweise:
+- Das Definieren des Ansible Inventories
+- Das Definieren des Vagrantfiles für die Infrastruktur Provisionierung
+- Das Definieren des haproxy Config-Datei
 
 ```bash
-cd stud.project.two
+git clone https://github.com/naivary/stud.project.two.git && cd stud.project.two
 ```
 
-
-### Provisionierung des Clusters
+### Provisionierung der Infrastruktur mithilfe von Vagrant
+Im Folgendem werden insgesamt 5 virtuelle Maschinen provisioniert (3 Control Planes und 2 Nodes). Ebenfalls wird eine Python Virtual Environment erstellt, für die Installation der Kubespray [Abhängigkeit](./kubespray/requirements.txt)
 ```bash
 vagrant up
 ```
