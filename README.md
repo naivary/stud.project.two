@@ -77,7 +77,7 @@ cd kubespray && pip install -r requirements.txt
 ansible-playbook -i inventory/k8s-cluster/hosts.yaml -u vagrant -b cluster.yml
 ```
 
-### Kopieren der Kubernets-Konfiguration
+### Kopieren der Kubernetes-Konfiguration
 Damit die Interaktion zwischen dem Ubuntu-Infrakstruktursystem und dem Kubernetes-Produktionscluster gelingt, muss die Kubernetes-Konfiguration `kubectl` bekannt sein. Diese ist bereits auf einem der drei Control Planes vordefiniert und muss ausschließlich auf das Infrastruktursystem kopiert werden. Der `.kube`-Ordner im Homeverzeichnis des aktuellen Ubuntu-Nutzers ist der Standardordner von `kubectl`. Dort erwartet `kubectl` die Kubernetes-Konfiguration.
 
 ```bash
