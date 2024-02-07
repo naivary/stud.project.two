@@ -4,7 +4,7 @@ Für die erfolgreiche Provisionierung des Kubernetes-Produktionsclusters müssen
 - [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads) installiert auf dem Ubuntu System
 - [Vagrant](https://developer.hashicorp.com/vagrant/downloads#Linux) installiert auf dem Ubuntu System
 
-## Installation von Softwarepakete und Aktualisierung von Ubuntu
+## Installation und Aktualisierung
 Zuerst müssen die Pakete von Ubuntu aktualisiert und benötigte Softwarepakete installiert werden. Zu den benötigten Softwarepaketen gehören:
 - jq
 - haproxy
