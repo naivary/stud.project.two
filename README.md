@@ -5,13 +5,13 @@ Für die erfolgreiche Provisionierung des Kubernetes-Produktionsclusters müssen
 - [Vagrant](https://developer.hashicorp.com/vagrant/downloads#Linux) installiert auf dem Ubuntu System
 
 ## Installation und Aktualisierung
-Zuerst müssen die Softwarepakete von Ubuntu aktualisiert und benötigte installiert werden. Zu den benötigten Softwarepaketen gehören:
+Zuerst müssen die bereits vorhandenen Softwarepakete aktualisiert und benötigte installiert werden. Zu den benötigten Softwarepaketen gehören:
 - jq
 - haproxy
 - python3.11
 - kubectl
 
-Für das einfache Arbeiten mit dem CLI von Kubernetes wird ebenfalls ein Alias `k` für das Kommando `kubectl` gesetzt.
+Für das einfache Arbeiten mit dem CLI von Kubernetes wird ein Alias `k` für das Kommando `kubectl` gesetzt.
 ```bash
 sudo apt-get update -y
 ```
@@ -46,7 +46,7 @@ alias k=kubectl
 
 ### Klonen des Git-Repositories
 Im Git-Repository wurden bereits einige Vorkehrungen für die einfache Provisionierung des Kubernetes-Produktionsclusters und die Interaktion damit getroffen. Zu den Vorkehrungen gehören beispielsweise:
-- Das Definieren des Ansible-Inventars.
+- Das Definieren des Ansible-Inventories.
 - Das Festlegen des Vagrantfiles für die Infrastrukturprovisionierung.
 - Das Erstellen der haproxy-Konfigurationsdatei.
 
@@ -125,7 +125,7 @@ kubectl create -f https://operatorhub.io/install/grafana-operator.yaml
 ```
 
 ### Deployment der beispielhaften Lösung
-In der `observe.yaml`-Datei werden die Kubernetes-Objekte definiert, die für die beispielhafte Lösung benötigt werden. Sollte ein Fehler auftreten, sollte das zweite Kommando ausgeführt werden, bis Erfolg verzeichnet wird. Die Fehler können aufgrund der Abhängigkeiten der Kubernetes-Objekte entstehen, die möglicherweise noch nicht vollständig erstellt wurden.
+In der `observe.yaml` Datei werden die Kubernetes-Objekte definiert, die für die beispielhafte Lösung benötigt werden. Sollte ein Fehler auftreten, sollte das zweite Kommando ausgeführt werden, bis Erfolg verzeichnet wird. Die Fehler können aufgrund der Abhängigkeiten der Kubernetes-Objekte entstehen, die möglicherweise noch nicht vollständig erstellt wurden.
 
 ```bash
 cd ..
