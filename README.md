@@ -1,6 +1,14 @@
 ## Vorrausetzung
-Es wird ein Ubuntu (20.04) benoetigt.
-## Vorgehen fuer das Deployment des k8s Clusters.
+Die im Folgenden beschriebenen Kommandos müssen alle auf einem Ubuntu (mindestens Version 20.04) ausgeführt werden für eine erfolgreiche Provisionierung des Kubernetes-Produktionsclusters.
+
+## Vorgehen für das Deployment des k8s Clusters.
+Zuerst müssen die Packages von Ubuntu aktualisiert werden und benötigte Software-Pakete installiert werden. Zu den benötigten Software-Paketen gehöhren:
+- jq
+- haproxy
+- python3.11
+- kubectl
+
+Für das einfache arbeiten mit dem CLI von Kubernetes wird ebenfalls ein alias `k` gesetz für das Kommando `kubectl`
 ```bash
 sudo apt-get update -y
 ```
