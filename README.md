@@ -1,17 +1,17 @@
 ## Vorrausetzung
-Für die erfolgreiche Provisionierung des Kubernetes-Produktionsclusters müssen folgende Vorrausetzungen erfüllt sein:
+Für die erfolgreiche Provisionierung des Kubernetes-Produktionsclusters müssen folgende Voraussetzungen erfüllt sein:
 - Ubuntu Betriebssystem (mindestens Version 20.04)
 - [Oracle VirtualBox](https://www.virtualbox.org/wiki/Downloads) installiert auf dem Ubuntu System
 - [Vagrant](https://developer.hashicorp.com/vagrant/downloads#Linux) installiert auf dem Ubuntu System
 
 ## Installation von Software-Pakete und Aktualisierung von Ubuntu
-Zuerst müssen die Packages von Ubuntu aktualisiert werden und benötigte Software-Pakete installiert werden. Zu den benötigten Software-Paketen gehöhren:
+Zuerst müssen die Pakete von Ubuntu aktualisiert und benötigte Softwarepakete installiert werden. Zu den benötigten Softwarepaketen gehören:
 - jq
 - haproxy
 - python3.11
 - kubectl
 
-Für das einfache arbeiten mit dem CLI von Kubernetes wird ebenfalls ein alias `k` gesetz für das Kommando `kubectl`
+Für das einfache Arbeiten mit dem CLI von Kubernetes wird ebenfalls ein Alias `k` für das Kommando `kubectl` gesetzt.
 ```bash
 sudo apt-get update -y
 ```
@@ -45,10 +45,10 @@ alias k=kubectl
 ```
 
 ### Klonen des Git-Repositories
-Im Git-Repositorie sind bereits einige Vorkehrungen getroffen wurden, für einfache Provisionierung des Kubernetes-Produktionsclusters und die Interaktion mit diesem. Zu den Vorkehrung gehören beispielsweise:
-- Das Definieren des Ansible Inventories
-- Das Definieren des Vagrantfiles für die Infrastruktur Provisionierung
-- Das Definieren des haproxy Config-Datei
+Im Git-Repository wurden bereits einige Vorkehrungen für die einfache Provisionierung des Kubernetes-Produktionsclusters und die Interaktion damit getroffen. Zu den Vorkehrungen gehören beispielsweise:
+- Das Definieren des Ansible-Inventars.
+- Das Festlegen des Vagrantfiles für die Infrastrukturprovisionierung.
+- Das Erstellen der haproxy-Konfigurationsdatei.
 
 ```bash
 git clone https://github.com/naivary/stud.project.two.git && cd stud.project.two
@@ -109,7 +109,7 @@ sudo cp haproxy.cfg /etc/haproxy/haproxy.cfg && sudo systemctl restart haproxy
 ```
 
 ### Implementierung der beispielhaften Observability-Lösung
-Für die Implementierung der beispielhaften Observability-Lösung werden die beiden Kubernetes-Operator Prometheus-Operator und Grafana-Operator benötigt.
+Für die Implementierung der beispielhaften Observability-Lösung werden die beiden Kubernetes-Operatoren Prometheus-Operator und Grafana-Operator benötigt.
 
 ```bash
 LATEST=$(curl -s https://api.github.com/repos/prometheus-operator/prometheus-operator/releases/latest | jq -cr .tag_name)
@@ -123,15 +123,19 @@ curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releas
 ```bash
 kubectl create -f https://operatorhub.io/install/grafana-operator.yaml
 ```
+
 ### Deployment der beispielhaften Lösung
-Im `observe.yaml` Datei werden die Kubernetes-Objekte definiert, welche für die beispielhafte Lösung benötigt werden. Sollte ein Fehler auftreten, sollte das zweite Kommand ausgeführt bis zum Erfolg.
-Die Fehler entstehen, aufgrund der Abhängigkeiten der Kubernetes-Objekte, die ggf. noch nicht vollständig erstellt sind.
+In der `observe.yaml`-Datei werden die Kubernetes-Objekte definiert, die für die beispielhafte Lösung benötigt werden. Sollte ein Fehler auftreten, sollte das zweite Kommando ausgeführt werden, bis Erfolg verzeichnet wird. Die Fehler können aufgrund der Abhängigkeiten der Kubernetes-Objekte entstehen, die möglicherweise noch nicht vollständig erstellt wurden.
 
 ```bash
-cd .. && k apply -f observe.yaml
+cd ..
+```
+
+```bash
+k apply -f observe.yaml
 ```
 
 ### Zugriff auf das Grafana-Dashboard
-Das Grafana-Dashboard kann nach dem erfolgreichen Deployment unter der Adresse https://192.168.56.200 erreicht werden. Die Anmeldaten lauten wie folgt:
+Das Grafana-Dashboard kann nach erfolgreichem Deployment unter der Adresse https://192.168.56.200 erreicht werden. Die Anmeldeinformationen lauten wie folgt:
 - Username: root
 - Password: secret
