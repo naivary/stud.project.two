@@ -55,7 +55,7 @@ git clone https://github.com/naivary/stud.project.two.git && cd stud.project.two
 ```
 
 ### Provisionierung der Infrastruktur mithilfe von Vagrant
-Im Folgendem werden insgesamt 5 virtuelle Maschinen provisioniert (3 Control Planes und 2 Nodes). Ebenfalls wird eine Python Virtual Environment erstellt, für die Installation der Kubespray [Abhängigkeiten](./kubespray/requirements.txt)
+Im Folgendem werden insgesamt 5 virtuelle Maschinen provisioniert (3 Control Planes und 2 Nodes). Ebenfalls wird eine Python Virtual Environment erstellt, für die Installation der Kubespray [Abhängigkeiten](./kubespray/requirements.txt). Im Vagranfile sollte das richtige Bridge Netzwerk eingestellt werden.
 
 ```bash
 vagrant up
