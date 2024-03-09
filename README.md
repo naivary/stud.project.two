@@ -1,3 +1,5 @@
+## Vorwort
+Die Schritte werden basierend auf dem Vagrantfile mitgeliefert. In der zwischen Zeit könnte sich einiges verändert haben und somit auch die Schritte beeinflussen. Sollte das der Fall sein, sollte ein Issue erstellt werden, sodass es frühzeitig behoben wird.
 ## Vorrausetzung
 Für die erfolgreiche Provisionierung des Kubernetes-Produktionsclusters müssen folgende Voraussetzungen erfüllt sein:
 - Ubuntu Betriebssystem (mindestens Version 20.04)
