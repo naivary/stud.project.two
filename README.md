@@ -107,7 +107,7 @@ scp vagrant@192.168.56.61:/home/vagrant/admin.conf ~/.kube/config
 ```
 
 ```bash
-sudo cp haproxy.cfg /etc/haproxy/haproxy.cfg && sudo systemctl restart haproxy
+cd .. && sudo cp haproxy.cfg /etc/haproxy/haproxy.cfg && sudo systemctl restart haproxy
 ```
 
 ### Implementierung der beispielhaften Observability-Lösung
